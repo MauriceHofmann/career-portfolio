@@ -1,39 +1,39 @@
 """
-Datei:      Security_URL_Check.py
-Autor:      Maurice Hofmann
-Erstellt:   08.02.2024
-Lizenz:     public
+File:        Security_URL_Check.py
+Author:      Maurice Hofmann
+Created:     08.02.2024
+License:     Public
 
-Beschreibung:
-    Dieses Skript überprüft die Sicherheit von URLs, die aus CSV-, TXT- oder Excel-Dateien
-    geladen werden. Es validiert die URLs, führt Sicherheitschecks mithilfe von testssl.sh
-    durch, erstellt einen ausführlichen Sicherheitsbericht in Excel und versendet
-    optional eine E-Mail mit den Ergebnissen.
+Description:
+    This script checks the security of URLs loaded from CSV, TXT, or Excel files.
+    It validates the URLs, performs SSL/TLS security checks using testssl.sh,
+    generates a detailed Excel security report, and optionally sends the results
+    via email.
 
-Voraussetzungen:
-    - Eine Datei mit URLs im CSV-, TXT- oder Excel-Format.
-    - Windows Subsystem for Linux (WSL) oder ein Linux-/Mac-System für die Ausführung von testssl.sh.
-    - Zugriff auf den SMTP-Server für den Versand der Ergebnisse per E-Mail.
+Requirements:
+    - A file containing URLs in CSV, TXT, or Excel format.
+    - Windows Subsystem for Linux (WSL) or a Linux/Mac system for executing testssl.sh.
+    - Access to an SMTP server to send results via email.
 
-Benötigte Bibliotheken:
-    - pandas: Zum Einlesen von Dateien und Erstellen von Reports.
-    - numpy: Für die Aufteilung von Daten für Multithreading.
-    - openpyxl: Zum Erstellen und Bearbeiten von Excel-Dateien.
-    - validators: Zur Validierung von URLs und E-Mail-Adressen.
-    - subprocess: Für die Ausführung externer Befehle (testssl.sh).
-    - smtplib & email.message: Zum Versand von E-Mail-Reports.
-    - threading & multiprocessing: Für parallele Bearbeitung der URLs.
-    - shutil, os, sys, time, json, platform: Für allgemeine System- und Dateifunktionen.
+Required Libraries:
+    - pandas: For reading files and generating reports.
+    - numpy: For splitting data during multithreaded processing.
+    - openpyxl: For creating and editing Excel reports.
+    - validators: For validating URLs and email addresses.
+    - subprocess: For executing external commands (testssl.sh).
+    - smtplib & email.message: For sending email reports.
+    - threading & multiprocessing: For parallel URL processing.
+    - shutil, os, sys, time, json, platform: For general system and file operations.
 
-Verwendung:
-    1. Lege die Datei mit URLs in das Verzeichnis "Files_Security_Check".
-    2. Passe ggf. die Konfiguration in "config.JSON" an (checkAll, receiver_mail).
-    3. Starte das Skript: `python Security_URL_Check.py`.
-    4. Nach Abschluss:
-       - Erfolgreich geprüfte URLs werden in einem Excel-Report gespeichert.
-       - Fehlerhafte oder ungültige URLs werden separat protokolliert.
-       - Optional wird der Bericht per E-Mail versendet, wenn eine gültige Empfängeradresse angegeben ist.
-       - Die Originaldatei wird in das Verzeichnis "Archive/" verschoben.
+Usage:
+    1. Place the file containing URLs into the "Files_Security_Check" directory.
+    2. Adjust the configuration in "config.JSON" if necessary (checkAll, receiver_mail).
+    3. Run the script: `python Security_URL_Check.py`.
+    4. Upon completion:
+       - Successfully validated URLs are saved in an Excel report.
+       - Invalid or failed URLs are logged separately.
+       - Optionally, the report is sent via email if a valid recipient address is provided.
+       - The original file is moved to the "Archive/" directory.
 """
 
 # --------------------------------

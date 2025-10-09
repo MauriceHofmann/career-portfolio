@@ -1,26 +1,30 @@
 """
-####################################
-#
-# Script Name: GPT_Automation_QA.py
-# Autor: Maurice Hofmann
-# Date: 2024-06-20
-# Version: 1.0.0
-#
-# Description:
-#   This script extracts questions from an Excel file, sends them to a private GPT model,
-#   and collects the generated answers. The results are stored in the Excel file.
-#
-# Dependencies:
-#   - selenium: For browser control and accessing the private GPT.
-#   - openpyxl: For reading and writing Excel files.
-#
-# Notes:
-#   - Assumes the Excel file contains a column with questions.
-#     Additional columns can be specified using the "optimization_nr" constant, where the answers will be stored.
-#
-####################################
-"""
+Script Name: Security_URL_Check.py
+Author: Maurice Hofmann
+Date: 2024-02-08
+Version: 1.0.0
 
+Description:
+    This script validates and analyzes the security of URLs listed in CSV, TXT, or Excel files.
+    It performs automated SSL/TLS checks using the "testssl.sh" tool, generates a detailed
+    Excel report of the results, and optionally sends the report via email.
+
+Dependencies:
+    - pandas: For reading input files and generating structured reports.
+    - numpy: For splitting datasets for parallel processing.
+    - openpyxl: For writing Excel reports.
+    - validators: For validating URLs and email addresses.
+    - subprocess: For executing external commands (testssl.sh).
+    - smtplib, email.message: For sending reports via email.
+    - threading, multiprocessing: For parallel URL processing.
+    - shutil, os, sys, json, time, platform, re: For file management and system operations.
+
+Notes:
+    - The script expects a file with URLs in the "Files_Security_Check" directory.
+    - Configuration options such as "checkAll" and "receiver_mail" must be provided in "config.JSON".
+    - On completion, the results are saved in an Excel report in the "Logfiles" directory.
+    - The processed input file is automatically archived.
+"""
 
 #===============================
 # Imports

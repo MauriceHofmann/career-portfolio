@@ -1,45 +1,46 @@
 """
-Datei:      XML_Parser.py
-Autor:      Maurice Hofmann
-Erstellt:   08.09.2025 
-Lizenz:     public
+File:        XML_Parser.py
+Author:      Maurice Hofmann
+Created:     08.09.2025
+License:     Public
 
-Beschreibung:
-    Dieses Skript definiert eine Funktion zum Parsen von XML-Dateien, die Daten aus dem Änderungsmanagement enthalten.
-    Diese Funktion extrahiert spezifische Informationen wie Nummer, Baureihe, Ausführungsart und speichert diese in einem Dictionary.
+Description:
+    This script defines a function for parsing XML files containing change management data. 
+    The function extracts specific information such as number, series, and configuration type, 
+    and stores them in a dictionary.
 
-Voraussetzungen:
-    - Eine gültige XML-Datei mit Daten im erwarteten Format (Änderungsmanagement-Daten)
+Requirements:
+    - A valid XML file containing data in the expected change management format.
 
-Benötigte Bibliotheken:
-    - xml.etree.ElementTree: Zum Parsen von XML-Dateien.
+Required Libraries:
+    - xml.etree.ElementTree: For parsing XML files.
 
-Verwendung:
-    1.  Stelle sicher, dass die benötigten Bibliotheken installiert sind.
-    2.  Passe den `filepath` in deinem Aufruf der Funktion `parse_change_management_xml` an,
-        um auf die zu parsende XML-Datei zu verweisen.
-    3.  Rufe die Funktion `parse_change_management_xml` mit dem Dateipfad und optional einem Namespace-Dictionary auf.
-    4.  Die Funktion gibt ein Dictionary mit den extrahierten Daten zurück.
+Usage:
+    1. Ensure that all required libraries are installed.
+    2. Adjust the `filepath` argument in your function call to `parse_change_management_xml` 
+       to point to the XML file you want to parse.
+    3. Call the function `parse_change_management_xml` with the file path and optionally a namespace dictionary.
+    4. The function returns a dictionary containing the extracted data.
 
 Exit Codes:
-    0: Erfolgreiche Ausführung.
-       Die XML-Datei wurde geparst, und die extrahierten Daten wurden erfolgreich auf der Standardausgabe ausgegeben.
+    0: Successful execution.  
+       The XML file was parsed successfully, and the extracted data were printed to the standard output.
 
-    1: Bei der Ausführung ist ein Fehler aufgetreten.
-       Genauere Fehlerbedingungen werden in der Standardfehlerausgabe (stderr) ausgegeben. Mögliche Fehler sind:
-        - Fehlendes Kommandozeilenargument:
-          Das Skript wurde ohne Angabe des XML-Dateipfads ausgeführt.
-        - Datei nicht gefunden:
-          Die angegebene XML-Datei existiert nicht.
-        - XML-Parsing-Fehler:
-          Die XML-Datei ist fehlerhaft und kann nicht geparst werden.
-        - Unerwarteter Fehler beim XML-Parsing:
-          Beim Parsen der XML-Datei ist eine unerwartete Ausnahme aufgetreten.
-          Die genaue Fehlermeldung wird in stderr ausgegeben.
-        - Fehler bei der Datenextraktion:
-          Beim Extrahieren der Daten aus dem geparsten XML-Baum ist ein Fehler aufgetreten.
-          Die genaue Fehlermeldung wird in stderr ausgegeben.
-    """
+    1: An error occurred during execution.  
+       Detailed error messages are printed to the standard error output (stderr). Possible causes include:
+        - Missing command-line argument:  
+          The script was run without specifying the XML file path.
+        - File not found:  
+          The specified XML file does not exist.
+        - XML parsing error:  
+          The XML file is malformed and cannot be parsed.
+        - Unexpected parsing error:  
+          An unexpected exception occurred while parsing the XML file.  
+          The exact error message will be printed to stderr.
+        - Data extraction error:  
+          An error occurred while extracting data from the parsed XML tree.  
+          The detailed error message will be printed to stderr.
+"""
 
 ########################
 # Imports
@@ -70,27 +71,27 @@ def parse_file(filepath: str) -> ET.Element:
 
 def parse_change_management_xml(root: ET.Element, namespace = {'dai': ''}):
     """
-    Extrahiert spezifische Datenfelder aus einer XML-Baumstruktur.
+    Extracts specific data fields from an XML tree structure.
 
-    Diese Funktion analysiert einen XML-Baum (dargestellt durch das `root`-Element)
-    und extrahiert Daten aus bestimmten Elementen basierend auf ihren Tag-Namen
-    und dem Namespace. Sie ruft Werte für 'Nummer', 'Baureihe',
-    'Ausfuehrungsart', 'EinsatzterminZeichnung' und eine verschachtelte Struktur
-    unter 'SelliSubtask' ab.
+    This function analyzes an XML tree (represented by the `root` element)
+    and extracts data from certain elements based on their tag names
+    and namespace. It retrieves values for 'Nummer', 'Baureihe',
+    'Ausfuehrungsart', 'EinsatzterminZeichnung', and a nested structure
+    under 'SelliSubtask'.
 
     Args:
-        root: Das Root-Element des XML-Baums.
-        namespace: Der XML-Namespace, der bei der Suche nach Elementen verwendet werden soll.
+        root: The root element of the XML tree.
+        namespace: The XML namespace to be used when searching for elements.
 
     Returns:
-        Ein Dictionary, das die extrahierten Daten enthält. Die Schlüssel des
-        Dictionarys entsprechen den Tag-Namen (z.B. "Nummer", "Baureihe").
+        A dictionary containing the extracted data. The dictionary keys correspond
+        to the tag names (e.g., "Nummer", "Baureihe").
 
     Raises:
-        ExceptionGroup: Wenn während des Parsens Fehler auftreten. Die ExceptionGroup
-            enthält eine Liste der einzelnen aufgetretenen Exceptions.
-            Mögliche Exceptions sind solche, die ausgelöst werden, wenn ein bestimmtes Element
-            nicht in der XML-Struktur gefunden wird.
+        ExceptionGroup: Raised if errors occur during parsing. The ExceptionGroup
+            contains a list of individual exceptions that were encountered.
+            Possible exceptions include missing elements that could not be found
+            in the XML structure.
     """
 
     extracted_data = {}

@@ -1,40 +1,39 @@
 """
-Datei:      MBI_Data_Crawler.py
-Autor:      Maurice Hofmann
-Erstellt:   01.02.2024
-Lizenz:     public
+File:        MBI_Data_Crawler.py
+Author:      Maurice Hofmann
+Created:     01.02.2024
+License:     Public
 
-Beschreibung:
-    Dieses Skript liest Daten aus CSV-Dateien ein, überprüft die
-    Gültigkeit der E-Mail-Adressen, greift über Selenium auf eine Webanwendung
-    zu, um die Benutzerinformationen zu ergänzen, und exportiert die gesammelten
-    Informationen in eine Excel-Datei. Fehlerhafte Datensätze werden protokolliert.
+Description:
+    This script reads data from CSV files, validates email addresses,
+    uses Selenium to access a web application to retrieve additional
+    user information, and exports the collected data to an Excel file.
+    Invalid or incomplete records are logged for review.
 
-Voraussetzungen:
-    - Eine CSV-Datei mit Spalten für Mitarbeiter-E-Mail-Adressen und ggf. weiteren
-      relevanten Informationen.
-    - Zugriff auf die Webanwendung zur Abfrage der Benutzerinformationen.
-    - Python-Bibliotheken: pandas, selenium, openpyxl, colorlog, validators, requests.
+Requirements:
+    - A CSV file containing employee email addresses and any additional
+      relevant information.
+    - Access to the web application used to query user information.
+    - Python libraries: pandas, selenium, openpyxl, colorlog, validators, requests.
 
-Benötigte Bibliotheken:
-    - pandas: Zum Einlesen und Verarbeiten der CSV-Datei und zum Export in Excel.
-    - selenium: Für Webautomatisierung und Abruf der Benutzerinformationen.
-    - openpyxl: Zum Erstellen und Bearbeiten von Excel-Dateien.
-    - requests: Für API-Abfragen mit Session-Cookie.
-    - colorlog & logging: Für farbige Konsolenausgabe von Logs.
-    - validators: Zur Validierung von E-Mail-Adressen.
-    - pathlib: Für plattformunabhängige Pfadangaben.
-    - csv: Für automatische Erkennung des Delimiters bei CSV-Dateien.
+Required Libraries:
+    - pandas: For reading and processing CSV files and exporting data to Excel.
+    - selenium: For web automation and retrieving user information.
+    - openpyxl: For creating and editing Excel files.
+    - requests: For API queries using a session cookie.
+    - colorlog & logging: For colored log output in the console.
+    - validators: For validating email addresses.
+    - pathlib: For cross-platform file path handling.
+    - csv: For automatic detection of CSV file delimiters.
 
-Verwendung:
-    1. Stelle sicher, dass die benötigten Bibliotheken installiert sind.
-    2. Lege die CSV-Datei in das gewünschte Verzeichnis und setze den Pfad in
-       der Variable `FILE`.
-    3. Rufe das Skript auf, z.B. `python MBI_Data_Crawler.py`.
-    4. Nach der Verarbeitung werden die gesammelten Mitarbeiterdaten in einer
-       Excel-Datei im Downloads-Ordner gespeichert.
-    5. Alle Fehler werden in einer separaten Log-Datei im Downloads-Ordner abgelegt.
-
+Usage:
+    1. Ensure that all required libraries are installed.
+    2. Place the CSV file in the desired directory and set its path
+       in the variable `FILE`.
+    3. Run the script, e.g. `python MBI_Data_Crawler.py`.
+    4. After processing, the collected employee data will be saved
+       as an Excel file in the user's Downloads folder.
+    5. All errors will be logged in a separate log file in the Downloads folder.
 """
 
 # --------------------------------
